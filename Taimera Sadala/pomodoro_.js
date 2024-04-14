@@ -22,13 +22,13 @@ let active = "focus";
 let count = 0;
 let paused = true;
 let minCount = 24;
-let userSetLongBreakTime = 15;
+let userSetLongBreakTime = 15
 time.textContent = `${minCount + 1}:00`;
 
 focusButton.classList.add("btn-active");
 
 const setActiveButton = (activeButton) => {
-  buttons.forEach((button) => {
+  buttons.forEach(button => {
     button.classList.remove("btn-active");
   });
   activeButton.classList.add("btn-active");
@@ -38,6 +38,7 @@ const appendZero = (value) => {
   value = value < 10 ? `0${value}` : value;
   return value;
 };
+
 
 const resetTimer = () => {
   clearInterval(set);
@@ -129,11 +130,10 @@ updateTimerButton.addEventListener("click", () => {
     shortBreakButton.classList.remove("btn-active");
     longBreakButton.classList.remove("btn-active");
   } else {
-    alert(
-      "Focus time, short break time, and long break time must be greater than 0."
-    );
+    alert("Focus time, short break time, and long break time must be greater than 0.");
   }
 });
+
 
 longBreakButton.addEventListener("click", () => {
   active = "long";
@@ -220,92 +220,16 @@ var modal = document.getElementById("settings-modal");
 var btn = document.getElementById("settings-btn");
 var span = document.getElementsByClassName("close")[0];
 
-btn.onclick = function () {
+btn.onclick = function() {
   modal.style.display = "block";
-};
+}
 
-span.onclick = function () {
+span.onclick = function() {
   modal.style.display = "none";
-};
+}
 
-window.onclick = function (event) {
+window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
-};
-
-
-var translations = {
-    lv: {
-      STRT: "Sākt",
-      Fcs: "Fokusēties",
-      LB: "Garā Atpūta",
-      SB: "Īsā atpūta",
-      CCL: "Pabeigtie Cikli: 0",
-      PSE: "Pauze",
-    },
-    en: {
-      STRT: "Start",
-      Fcs: "Focus",
-      LB: "Long Break",
-      SB: "Short Break",
-      CCL: "Completed Cycles: 0",
-      PSE: "Pause",
-    },
-    ru: {
-      STRT: "Sākt",
-      Fcs: "Fokusēties",
-      LB: "",
-      SB: "",
-      CCL: "Pabeigtie Cikli: 0",
-      PSE: "",
-    },
-  };
-  
-  function translatePage(lang) {
-    var translatableElements = document.querySelectorAll("[data-translate]");
-  
-    translatableElements.forEach(function (element) {
-      var key = element.getAttribute("data-translate");
-      if (translations[lang] && translations[lang][key]) {
-        var translation = translations[lang][key];
-        translation = translation.replace(/\n/g, "<br>"); // Replace \n with <br>
-        element.innerHTML = translation;
-      }
-    });
-  }
-  
-  var languageButtons = document.querySelectorAll(".language");
-
-  languageButtons.forEach(function (button) {
-    button.addEventListener("click", function () {
-      var lang = this.getAttribute("data-lang");
-      translatePage(lang);
-    });
-  });
-  
-  var userLang = navigator.language || navigator.userLanguage;
-  userLang = userLang.substr(0, 2);
-  
-  translatePage(userLang);
-
-
-const cursorDot = document.querySelector("[data-cursor-dot]");
-const cursorOutline = document.querySelector("[data-cursor-outline]");
-
-window.addEventListener("mousemove", function (e) {
-
-  const posX = e.clientX;
-  const posY = e.clientY;
-
-  cursorDot.style.left = `${posX}px`;
-  cursorDot.style.top = `${posY}px`;
-
-  cursorOutline.style.left = `${posX}px`;
-  cursorOutline.style.top = `${posY}px`;
-
-  cursorOutline.animate({
-    left: `${posX}px`,
-    top: `${posY}px`
-  }, { duration: 500, fill: "forwards" });
-});
+}
