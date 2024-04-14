@@ -1,25 +1,3 @@
-$(document).ready(() => {
-  $("a:not(.poga)").on('click', function (event) {
-    event.preventDefault();
-
-    if (this.hash !== "") {
-      const hash = this.hash;
-
-      $('html, body').animate({
-        scrollTop: $(hash).offset().top
-      }, 800, function () {
-        window.location.hash = hash;
-      });
-    }
-  });
-
-  $(".poga").on('click', function (event) {
-    event.preventDefault();
-    window.location.href = this.href;
-  });
-});
-
-
 // Parallax elementi
 
 const elements = {
@@ -42,9 +20,8 @@ window.addEventListener('scroll', () => {
 
 $(document).ready(() => {
   $("a").on('click', function (event) {
-    event.preventDefault();
-
     if (this.hash !== "") {
+      event.preventDefault();
       const hash = this.hash;
 
       $('html, body').animate({
@@ -55,7 +32,6 @@ $(document).ready(() => {
     }
   });
 
-
   $(".go-top").click(function (e) {
     e.preventDefault();
     $("html, body").stop().animate({ scrollTop: 0 }, 500, 'swing', function () {
@@ -64,10 +40,9 @@ $(document).ready(() => {
   });
 });
 
-// Text and image fade in
+// Text fade in
 
 const paragraphs = document.querySelectorAll(".section__paragraph");
-// add image fade in and review box fade in 
 
 document.addEventListener("scroll", function () {
   paragraphs.forEach((paragraph) => {
@@ -105,7 +80,6 @@ var translations = {
     KSP_P: "Pomidoro ir Klases-E jeb © SIA “Sistēmas Izglītibas” projekts/kompānija",
     SKL: "Sākt Lietot",
     MPL: "Mūsu Priecīgie lietotāji",
-    Knt: "Kontakti",
   },
   en: {
     KSIP: "What Is PomoTime",
@@ -117,7 +91,6 @@ var translations = {
     KSP_P: "Pomidoro is Klases-E or © SIA “Sistēmas Izglītibas” project/company",
     SKL: "Start Using",
     MPL: "Our Happy Customers",
-    Knt: "Contacts",
   },
   ru: {
     KSIP: "Что такое PomoTime",
@@ -129,7 +102,6 @@ var translations = {
     KSP_P: "Помидоро - это проект/компания Klases-E или © SIA “Sistēmas Izglītibas”",
     SKL: "Начать использовать",
     MPL: "Наши Довольные Клиенты",
-    Knt: "контакты",
   },
 };
 
@@ -141,7 +113,7 @@ function translatePage(lang) {
     if (translations[lang] && translations[lang][key]) {
       var translation = translations[lang][key];
       translation = translation.replace(/\n/g, "<br>"); // Replace \n with <br>
-      element.innerHTML = translation;
+      element.innerHTML = translation; // Apply the translation
     }
   });
 }
@@ -189,21 +161,14 @@ const reviews = [
     name: 'Lauris Treimanis',
     username: '@fr1zys',
     review: '"Pretty dog, vieglāk ir izmantot pulksteņa taimeri, bet vel projām reitošu 4 stars."',
-    profilePic: './img/placeholder-person.jpg',
+    profilePic: './img/placeholder-person.jpg', // replace with actual image path
     stars: 4,
   },
   {
     name: 'Madars Urtāns',
     username: '@madzhis',
-    review: '"Ļoti Laba mājas lapa, viņa palīdz ar laiku organizāciju tik labi ka es nokaveju brāļa kāzas"',
-    profilePic: './img/placeholder-person.jpg',
-    stars: 5,
-  },
-  {
-    name: 'Ramins Pucko',
-    username: '@latvian_warcriminal',
-    review: '"Hu*ņa websaits varetu labak uztaisīt."',
-    profilePic: './img/placeholder-person.jpg',
+    review: 'Tik laba mājas lapa palīdz ar laika organizāciju tik labi ka nokavēju brāļā kāzas.',
+    profilePic: './img/placeholder-person.jpg', // replace with actual image path
     stars: 5,
   },
 ];
@@ -261,34 +226,3 @@ $(document).ready(function () {
     $(".dropdown-content").toggle();
   });
 });
-
-// modal preks kontaktiem
-var modal = document.getElementById("KontaktiModal");
-var btn = document.getElementById("myBtn");
-var span = document.getElementsByClassName("close")[0];
-
-btn.onclick = function () {
-  modal.style.display = "block";
-  setTimeout(function () {
-    modal.style.opacity = "1";
-    modal.querySelector(".modal-content").style.transform = "scale(1)";
-  }, 50);
-}
-
-span.onclick = function () {
-  modal.style.opacity = "0";
-  modal.querySelector(".modal-content").style.transform = "scale(0)";
-  setTimeout(function () {
-    modal.style.display = "none";
-  }, 300);
-}
-
-window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.opacity = "0";
-    modal.querySelector(".modal-content").style.transform = "scale(0)";
-    setTimeout(function () {
-      modal.style.display = "none";
-    }, 300);
-  }
-}
